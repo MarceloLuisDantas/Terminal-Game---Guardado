@@ -30,7 +30,7 @@ func StatusBatalha(p *player.Player, m *mobs.Mob) {
 
 	fmt.Printf("HP: %d", p.Hp)
 	fmt.Printf("%s", espacoHp)
-	fmt.Printf("HP: %d \n", p.Hp)
+	fmt.Printf("HP: %d \n", m.Hp)
 
 	fmt.Printf("ATK: %d DEF: %d", p.Atk, p.Def)
 	fmt.Printf("%s", espacoAtk)

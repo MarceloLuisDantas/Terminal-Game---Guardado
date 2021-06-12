@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"terminal/battle"
 	"terminal/input"
 	"terminal/mobs"
@@ -22,7 +23,18 @@ func main() {
 	for {
 		txt.CallClear()
 		txt.Top2()
-		battle.Batalha(&jogador, &morcego)
+		resultado := battle.Batalha(&jogador, &morcego)
+		if resultado == -1 {
+			txt.CallClear()
+			fmt.Println("Você perdeu")
+		} else if resultado == 0 {
+			txt.CallClear()
+			fmt.Println("Batalha empatada")
+		} else {
+			txt.CallClear()
+			fmt.Println("Você venceu")
+		}
 		_ = input.StrInput("")
+		break
 	}
 }
