@@ -1,3 +1,5 @@
+// PACOTE RESPONSAVEL POR CRIAR MONSTROS
+
 package mobs
 
 import "math/rand"
@@ -11,6 +13,7 @@ type Mob struct {
 	XPBase int
 }
 
+// Metodo para Atacar
 func (m Mob) Atacar(def int) (int, bool) {
 	critico := rand.Intn(100)
 	if critico <= 5 {
@@ -19,7 +22,8 @@ func (m Mob) Atacar(def int) (int, bool) {
 	return (m.Atk / ((def + 1) / 2)), false
 }
 
-func (p *Mob) Defender(dano int) (int, bool) {
+// Metodo para Defender
+func (p Mob) Defender(dano int) (int, bool) {
 	sorte := rand.Intn(100)
 	if sorte <= 10 {
 		return 0, true

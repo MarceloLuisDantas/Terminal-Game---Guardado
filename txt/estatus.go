@@ -1,3 +1,5 @@
+// FUNÇÕES PARA MOSTRAR OS ESTATUS DO JOGADOR E INIMIGOS
+
 package txt
 
 import (
@@ -8,18 +10,23 @@ import (
 	"terminal/player"
 )
 
+// Mostra os estatus do jogador fora de batalha
 func Status(p *player.Player) {
 	fmt.Println("Nome: ", p.Nome)
 	fmt.Println("HP: ", p.Hp)
 	fmt.Println("ATK: ", p.Atk, "DEF: ", p.Def)
 }
 
+// Mostra os estatus do jogador e do inimigo em batalha
 func StatusBatalha(p *player.Player, m *mobs.Mob) {
+	// Calcula a quantidade espaço para encaixar o nome
 	espacoNome := strings.Repeat(" ", 50-6-len(p.Nome))
 
+	// Calcula o espaço para enciaxar o HP
 	tHp := len(strconv.Itoa(p.Hp))
 	espacoHp := strings.Repeat(" ", 50-4-tHp)
 
+	// Calcula o espaço para encaixar o ATK e DEF
 	tAtk := len(strconv.Itoa(p.Atk))
 	tDef := len(strconv.Itoa(p.Def))
 	espacoAtk := strings.Repeat(" ", 50-13-tAtk+tDef)

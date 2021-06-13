@@ -1,3 +1,5 @@
+// PACOTE RESPONSAVEL POR CRIAR E GERENCIAR JOGADORES
+
 package player
 
 import (
@@ -18,10 +20,12 @@ type Player struct {
 	Next int     // Total de XP para o proximo nivel
 }
 
+// Calcula o XP ganho apos uma batalha
 func calculaXp(pn, ml, mxp int) float64 {
 	return float64(mxp*ml) + (float64(pn/2) + 1.5)
 }
 
+// Metodo para Atacar
 func (p *Player) Atacar(def int) (int, bool) {
 	critico := rand.Intn(100)
 	if critico <= 5 {
@@ -30,6 +34,7 @@ func (p *Player) Atacar(def int) (int, bool) {
 	return (p.Atk / ((def + 1) / 2)), false
 }
 
+// Metodo para Defender
 func (p *Player) Defender(dano int) (int, bool) {
 	sorte := rand.Intn(100)
 	if sorte <= 25 {
@@ -38,6 +43,7 @@ func (p *Player) Defender(dano int) (int, bool) {
 	return (dano / 2) + 1, false
 }
 
+// Metodo par aupar de nivel
 func (p *Player) Upar(ml, mxp int) {
 	p.Xp = p.Xp + calculaXp(p.Nvl, ml, mxp)
 	if p.Xp >= float64(p.Next) {
@@ -51,6 +57,7 @@ func (p *Player) Upar(ml, mxp int) {
 	}
 }
 
+// Função para criar um jogador novo
 func NewPlayer() Player {
 	var nome string
 	for {

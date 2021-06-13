@@ -1,3 +1,5 @@
+// FUNÇÃO PARA LIMPAR A TELA
+
 package txt
 
 import (

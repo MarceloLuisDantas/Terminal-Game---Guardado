@@ -1,3 +1,5 @@
+// PACOTE RESPOSNAVEL POR GERENCIAR AS ENTRADAS DO JOGADOR
+
 package input
 
 import (
@@ -7,9 +9,10 @@ import (
 	"strconv"
 )
 
+// Recebe uma string do jogador
 func StrInput(label string) string {
 	r := bufio.NewReader(os.Stdin)
-	fmt.Printf(label)
+	fmt.Print(label)
 	v, _, err := r.ReadLine()
 	if err != nil {
 		panic(err)
@@ -17,6 +20,7 @@ func StrInput(label string) string {
 	return string(v)
 }
 
+// Recebe um inteiro do jogador
 func IntInput(label string) (int, error) {
 	entrada := StrInput(label)
 	valor, err := strconv.Atoi(entrada)
