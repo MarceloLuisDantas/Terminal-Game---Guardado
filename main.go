@@ -11,6 +11,7 @@ import (
 )
 
 func main() {
+	txt.CallClear()
 	morcego := mobs.Mob{
 		Nome:   "Morcego",
 		Hp:     3,

@@ -44,9 +44,11 @@ func (p *Player) Defender(dano int) (int, bool) {
 }
 
 // Metodo par aupar de nivel
-func (p *Player) Upar(ml, mxp int) {
-	p.Xp = p.Xp + calculaXp(p.Nvl, ml, mxp)
+func (p *Player) Upar(ml, mxp int) (int, bool, Player) {
+	xpGanho := calculaXp(p.Nvl, ml, mxp)
+	p.Xp = p.Xp + xpGanho
 	if p.Xp >= float64(p.Next) {
+		old := *p
 		p.Nvl++
 		p.Xp = 0
 		p.Next = p.Next * 2
@@ -54,7 +56,9 @@ func (p *Player) Upar(ml, mxp int) {
 		p.Hp = p.MHp
 		p.Atk = p.Atk + p.Atk/2
 		p.Def = p.Def + p.Def/2
+		return int(xpGanho), true, old
 	}
+	return int(xpGanho), false, Player{}
 }
 
 // Função para criar um jogador novo
@@ -62,7 +66,7 @@ func NewPlayer() Player {
 	var nome string
 	for {
 		nome = input.StrInput("Digite seu nome: ")
-		ok := input.StrInput(fmt.Sprintf("Tem certeza que %s sera seu nome? [S/N]", nome))
+		ok := input.StrInput(fmt.Sprintf("Tem certeza que %s sera seu nome? [S/N]: ", nome))
 		if strings.ToLower(ok) != "n" {
 			break
 		}
@@ -70,9 +74,11 @@ func NewPlayer() Player {
 	return Player{
 		Nome: string(nome),
 		Hp:   10,
+		MHp:  10,
 		Atk:  2,
 		Def:  4,
 		Nvl:  1,
-		Xp:   0,
+		Xp:   49,
+		Next: 50,
 	}
 }

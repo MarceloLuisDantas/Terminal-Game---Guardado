@@ -99,18 +99,22 @@ func Batalha(p *player.Player, m *mobs.Mob) int {
 		inimigo := 1
 		re = confontro(p, m, escolha, inimigo)
 		// ----------------------
-
+		fmt.Println("")
 		// Verifica se o jogador ganhou ou perdeu
 		ganhou := win(p.Hp, m.Hp)
 		if ganhou == -1 { // Pedeu
 			return -1
 		} else if ganhou == 0 { // Empate
 			// Calcula o XP ganho em batalha
-			p.Upar(m.Nvl, m.XPBase)
+			xp, upou, old := p.Upar(m.Nvl, m.XPBase)
+			txt.FinalBatalha(xp, upou, *p, old)
+			input.StrInput("Continuar  ")
 			return 0
 		} else if ganhou == 1 { // Ganhou
 			// Calcula o XP ganho em batalha
-			p.Upar(m.Nvl, m.XPBase)
+			xp, upou, old := p.Upar(m.Nvl, m.XPBase)
+			txt.FinalBatalha(xp, upou, *p, old)
+			input.StrInput("Continuar  ")
 			return 1
 		}
 	}
